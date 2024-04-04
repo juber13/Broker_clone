@@ -1,6 +1,7 @@
-const userModel = require('../models/user.model')
+const userModel = require('../models/user.model');
+const errorHandler = require('../utills/error');
 
-const signUp = async (req, res) => {
+const signUp = async (req, res, next) => {
     const { firstName, lastName, email, password, phone, f } = req.body;
 
     if (!firstName || !lastName || !email || !password || !phone) {
@@ -8,6 +9,10 @@ const signUp = async (req, res) => {
             success: false,
             message: "All fields are required"
         })
+    }
+
+    if(password.length < 8){
+        return errorHandler(500 , "password length should be eight character")
     }
 
     try {
@@ -19,9 +24,7 @@ const signUp = async (req, res) => {
         })
 
     } catch (err) {
-        res.status(500).json({
-            message: err.message
-        })
+        next(err)
     }
 
 

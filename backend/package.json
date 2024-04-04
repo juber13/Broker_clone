@@ -4,8 +4,8 @@
   "description": "broker clone full stack developement project",
   "main": "index.js",
   "scripts": {
-    "start" : "nodemon app.js",
-    "dev" : "nodemon app.js"
+    "start" : "nodemon index.js",
+    "dev" : "nodemon index.js"
   },
   "author": "juber",
   "license": "ISC",
