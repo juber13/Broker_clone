@@ -4,7 +4,8 @@
   "description": "broker clone full stack developement project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start" : "nodemon app.js",
+    "dev" : "nodemon app.js"
   },
   "author": "juber",
   "license": "ISC",
