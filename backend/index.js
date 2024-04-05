@@ -15,7 +15,7 @@ app.listen(process.env.PORT, () => {
 })
 
 
-app.use('/api/user', require('./routes/user.route.js'))
+// app.use('/api/user', require('./routes/user.route.js'))
 app.use('/api/auth', require('./routes/auth.route.js'))
 
 app.use((err, req, res, next) => {
@@ -28,6 +28,7 @@ app.use((err, req, res, next) => {
         statusCode
     });
 });
+
 
 
 

@@ -2,11 +2,13 @@ const express = require('express');
 
 const router = express.Router();
 
-const  signUp  = require('../controllers/auth.controller')
+const { signUp, signIn , signInWithGoogle } = require('../controllers/auth.controller')
 
 
 
-router.post('/sign-up', signUp);
+router.post('/register', signUp);
+router.post('/login', signIn);
+router.post('/google', signInWithGoogle);
 
 
 module.exports = router;
