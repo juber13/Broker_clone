@@ -40,14 +40,11 @@ const signInWithGoogle = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (user) {
-
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-
       const { password: pass, ...rest } = user._doc;
-
-
-      res.cookie('access-token', token, { httpOnly: true }).status(200).
-        json(rest);
+      res.cookie('access-token', token, { httpOnly: true })
+        .status(200)
+        .json(rest);
     } else {
       const genratePasswond = Math.random().toString(36).slice(-8);
       const hashedPassword = bcrypt.hashSync(genratePasswond, 10);
@@ -57,7 +54,7 @@ const signInWithGoogle = async (req, res, next) => {
 
       const { password: pass, ...rest } = newUser._doc
 
-      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+      const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
       res.cookie('access-token', token, { httpOnly: true }).status(200).json(rest)
       console.log(genratePasswond)
     }
