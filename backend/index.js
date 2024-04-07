@@ -1,3 +1,4 @@
+dotenv.config({path : './config/.env'});
 import express from 'express';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
@@ -5,17 +6,23 @@ import authRouter from './routes/auth.route.js';
 import listingRouter from './routes/listing.route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
-import connectDb from './db/db.js';
-dotenv.config({path : './config/.env'});
+import connnetDB from './db/db.js';
 
-connectDb()
+console.log(process.env.PORT)
+
+
+connnetDB();
 
 const __dirname = path.resolve();
+
 const app = express();
+
 app.use(express.json());
+
 app.use(cookieParser());
-app.listen(3000, () => {
-  console.log('Server is running on port 3000!');
+
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}!`);
 });
 
 app.use('/api/user', userRouter);
