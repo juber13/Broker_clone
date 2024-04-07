@@ -1,28 +1,38 @@
-dotenv.config({path : './config/.env'});
 import express from 'express';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
 import listingRouter from './routes/listing.route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
-import connnetDB from './db/db.js';
+dotenv.config();
 
-console.log(process.env.PORT)
+console.log(process.env.JWT_SECRET)
 
+const connectDB = () => {
+ mongoose
+  .connect("mongodb+srv://juber13:juberkhan@cluster0.j8nghxi.mongodb.net/Broker")
+  .then(() => {
+    console.log('Connected to MongoDB!');
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
 
-connnetDB();
-
-const __dirname = path.resolve();
-
+connectDB();
+  
+  const __dirname = path.resolve();
+  
 const app = express();
 
 app.use(express.json());
 
 app.use(cookieParser());
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT}!`);
+app.listen(process.env.PORT || 5000, () => {
+  console.log('Server is running on port 3000!');
 });
 
 app.use('/api/user', userRouter);
@@ -30,10 +40,10 @@ app.use('/api/auth', authRouter);
 app.use('/api/listing', listingRouter);
 
 
-app.use(express.static(path.join(__dirname, '/frontEnd/dist')));
+app.use(express.static(path.join(__dirname, '/client/dist')));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontEnd', 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 })
 
 app.use((err, req, res, next) => {
