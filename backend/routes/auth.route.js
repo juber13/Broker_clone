@@ -1,14 +1,11 @@
-const express = require('express');
+import express from 'express';
+import { google, signOut, signin, signup } from '../controllers/auth.controller.js';
 
 const router = express.Router();
 
-const { signUp, signIn , signInWithGoogle } = require('../controllers/auth.controller')
+router.post("/signup", signup);
+router.post("/signin", signin);
+router.post('/google', google);
+router.get('/signout', signOut)
 
-
-
-router.post('/register', signUp);
-router.post('/login', signIn);
-router.post('/google', signInWithGoogle);
-
-
-module.exports = router;
+export default router;
