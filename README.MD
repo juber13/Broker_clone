@@ -12,7 +12,7 @@ Building / package.json scripts<br>
 Challenges Faced
 
 ## Features
-useed tailwind css to make more dynamic and responsive
+used tailwind css to make more dynamic and responsive
 Login and signup functionality<br>
 Login and signup using firebase<br>
 Login and logout using firebase<br>
