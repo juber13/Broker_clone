@@ -1,8 +1,8 @@
-# Search Recipe App
+# Broker clone
 
 ### Project Link
 
-[Hosted](https://ecomsss.netlify.app/)
+[Hosted](https://broker-clone.onrender.com/)
 Hosted Link <br>
 Table of Contents <br>
 Features<br>
